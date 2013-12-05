@@ -1,0 +1,216 @@
+{% extends "::base.html.twig" %}
+
+{% trans_default_domain 'FamilyUserBundle' %}
+
+{% block header_body %}
+    <div class="col-12 col-lg-1"></div>
+    <div class="col-12 col-lg-10">
+            <div class="progressbar col-12 col-lg-12">
+                <div class="progress progress-striped active">
+                    <div class="progress-bar progress-bar-success" style="width: 33%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="33" role="progressbar">
+                        <span class="sr-only">33% Complete</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-12">
+                <h3>{{ 'getstarted.step_two.body_header'|trans }}</h3>
+                <div class="header-text text-margin">
+                    <p>{{ 'getstarted.step_two.instruction'|trans }}</p>
+                </div>
+            </div>
+    </div>
+    <div class="col-12 col-lg-1"></div>
+
+    <div class="clear"></div>
+
+{% endblock header_body %}
+
+{% block body %}
+
+	<div class="col-12 col-lg-1"></div>
+
+    <div class="col-12 col-lg-10">
+            <div class="col-12 col-lg-12">
+
+            <form class="form-horizontal" id = "formStepTwo" action="{{ path('family_user_document_steptwo') }}" {{ form_enctype(form) }} method="POST">
+			
+                <!--<div class="form-group">
+					<div class="col-xs-4">
+                        {# form_widget(form.extent, { 'attr': {'class': 'form-control', 'checked': 'checked'} }) #}
+                    </div>
+					<div class="col-xs-6">
+                    {# form_label(form.extent, 'getstarted.step_two.extent'|trans, { 'label_attr': {'class': 'col-xs-9 control-labell extent'} }) #}
+                    {# form_errors(form.extent) #} 
+                    </div>
+                          
+                </div>-->
+				
+				<div id ="errorPersonTitle" style = "color : red"></div></br>
+                <div class="form-group">
+                    {{ form_label(form.person_title, 'getstarted.step_two.title'|trans, { 'label_attr': {'class': 'col-lg-4 control-labell'} }) }}
+                    {{ form_errors(form.person_title) }}
+                    <div class="col-lg-8">
+                        {{ form_widget(form.person_title, { 'attr': {'class': 'form-control'} }) }}
+                    </div>
+                </div>
+				<div id ="errorFirtsname" style = "color : red"></div></br>
+                <div class="form-group" title="{{ 'getstarted.step_two.firstname_help'|trans|raw }}" rel="ToolTip">
+                    {{ form_label(form.first_name, 'getstarted.step_two.firstname'|trans, { 'label_attr': {'class': 'col-lg-4 control-labell'} }) }}
+                    {{ form_errors(form.first_name) }}
+                    <div class="col-lg-8">
+                        {{ form_widget(form.first_name, { 'attr': {'class': 'form-control'} }) }}
+                    </div>
+                </div>
+				<div id ="errorMaidenName" style = "color : red"></div></br>
+                <div class="form-group" title="{{ 'getstarted.step_two.maiden_name_help'|trans|raw }}" rel="ToolTip">
+                    {{ form_label(form.maiden_name, 'getstarted.step_two.maiden_name'|trans, { 'label_attr': {'class': 'col-lg-4 control-labell'} }) }}
+                    {{ form_errors(form.maiden_name) }}
+                    <div class="col-lg-8">
+                        {{ form_widget(form.maiden_name, { 'attr': {'class': 'form-control'} }) }}
+                    </div>
+                </div>
+				<div id ="errorBirthDate" style = "color : red"></div></br>
+                <div class="form-group">
+                    {{ form_label (form.birthdate, 'getstarted.step_two.birth_date'|trans, { 'label_attr': {'class': 'col-lg-4 control-labell'} }) }}   
+                    <div class="col-lg-8">
+                        <div class="date">
+                            {{ form_widget (form.birthdate.day, { 'attr': {'class': 'form-control'} }) }} 
+                        </div>
+                        <div class="date" style="margin-left: 5%">
+                            {{ form_widget (form.birthdate.month, { 'attr': {'class': 'form-control'} }) }}  
+                        </div>
+                        <div class="date" style="margin-left: 5%">
+                            {{ form_widget (form.birthdate.year, { 'attr': {'class': 'form-control'} }) }}  
+                        </div>
+                        {{ form_errors(form.birthdate) }}
+                    </div>
+                </div>
+				<div id ="errorBirthCountry" style = "color : red"></div></br>
+                <div class="form-group">
+                    {{ form_label(form.birth_country, 'getstarted.step_two.country'|trans, { 'label_attr': {'class': 'col-lg-4 control-labell'} }) }}
+                    {{ form_errors(form.birth_country) }}
+                    <div class="col-lg-8">
+                        {{ form_widget(form.birth_country, { 'attr': {'class': 'form-control'} }) }}
+                    </div>
+                </div>
+				<div id ="errorBirthCity" style = "color : red"></div></br>
+                <div class="form-group">
+                    {{ form_label(form.birth_city, 'getstarted.step_two.birth_city'|trans, { 'label_attr': {'class': 'col-lg-4 control-labell'} }) }}
+                    {{ form_errors(form.birth_city) }}
+                    <div class="col-lg-8">
+                        {{ form_widget(form.birth_city, { 'attr': {'class': 'form-control'} }) }}
+                    </div>
+                </div>
+				<div id ="errorBirthZip" style = "color : red"></div></br>
+                <div class="form-group">
+                    {{ form_label(form.birth_zip, 'getstarted.step_two.birth_zip'|trans, { 'label_attr': {'class': 'col-lg-4 control-labell'} }) }}
+                    {{ form_errors(form.birth_zip) }}
+                    <div class="col-lg-6">
+                        {{ form_widget(form.birth_zip, { 'attr': {'class': 'form-control'} }) }}
+                    </div>                    
+					<div class="col-lg-2">
+						<a href="#" class="links" onClick="MyWindow=window.open('http://www.codespostaux.com/home/r.php?q=&Pays=fr','MyWindow','toolbar=no,location=no,directories=no,status=no, menubar=no,resizable=no,width=600,height=400'); return false;">
+						<img class="img-responsive" id="loc" title="{{ 'getstarted.step_two.birth_zip_link'|trans }}" rel="tooltip" src="{{ asset('images/locate_35.png') }}" alt="Locate"/></a>
+                    </div>
+                </div>
+				<div id ="errorTreeModify" style = "color : red"></div></br>
+				<input type = "hidden" id = "divTreeModify" {% if person.maritalStatus.status == "partner"  %} value = "1" {% else %} value = "0" {% endif %} />
+                <div class="form-group"  {% if person.maritalStatus.status == "partner"  %} style="display: none;"{% endif %}>
+					
+                    {{ form_label(form.tree_modify, 'getstarted.step_two.tree_modify'|trans, { 'label_attr': {'class': 'col-lg-4 control-labell'} }) }}
+                    {{ form_errors(form.tree_modify) }}
+                    <div class="col-lg-3">
+                        {{ form_widget(form.tree_modify, { 'attr': {'class': 'form-control'} }) }}
+                    </div>
+				<div class="col-lg-5">{{ 'getstarted.step_two.tree_modify_help'|trans }}</div>
+                </div>
+
+                {{ form_rest(form) }}
+
+                <div>
+                    <div class="document-next-button" style="float: left"><a href="{{ path('family_user_document_stepone') }}" style="float: left">{{ 'getstarted.prev_step'|trans }}</a></div>
+                </div>
+
+                <div>
+                    <!-- bad button here: <div class="document-next-button" style="float: right"><a href="{{ path('family_user_document_stepthree') }}" style="float: right">{{ 'getstarted.next_step'|trans }}</a></div> -->
+<!--dont change that button below!!-->
+                   <div class="document-next-button" style="float: right"><button style="float: right" type = "submit" onclick = "verifTree(); return false;">{{ 'getstarted.next_step'|trans }}</button></div>
+              </div>
+            </form>
+            
+            </div>    
+        </div>
+        <div class="col-12 col-lg-1"></div>
+
+        
+    </div>
+
+	<script text = "javascript">
+	function verifTree()
+	{
+		
+		if( $("#family_user_partner_person_person_title").val() == "")
+		{
+			$("div#errorPersonTitle").html("<span class='alert alert-danger'>{{ 'getstarted.step_two.treerequired'|trans }}</span>");
+			$("div#errorTreeModify").html("");$("div#errorFirtsname").html("");$("div#errorBirthZip").html("");$("div#errorMaidenName").html("");$("div#errorBirthCity").html("");$("div#errorBirthDate").html("");$("div#errorBirthCountry").html("");
+
+		} 
+		
+		else if( $("#family_user_partner_person_first_name").val() == "")
+		{
+			$("div#errorFirtsname").html("<span class='alert alert-danger'>{{ 'getstarted.step_two.treerequired'|trans }}</span>");
+			$("div#errorTreeModify").html("");$("div#errorPersonTitle").html("");$("div#errorBirthZip").html("");$("div#errorMaidenName").html("");$("div#errorBirthCity").html("");$("div#errorBirthDate").html("");$("div#errorBirthCountry").html("");
+		}
+	
+		
+		else if( $("#family_user_partner_person_maiden_name").val() == "")
+		{
+			$("div#errorMaidenName").html("<span class='alert alert-danger'>{{ 'getstarted.step_two.treerequired'|trans }}</span>");
+			$("div#errorTreeModify").html("");$("div#errorFirtsname").html("");$("div#errorBirthZip").html("");$("div#errorPersonTitle").html("");$("div#errorBirthCity").html("");$("div#errorBirthDate").html("");$("div#errorBirthCountry").html("");
+
+		}
+		else if( $("#family_user_partner_person_birthdate_day").val() == "")
+		{
+			$("div#errorBirthDate").html("<span class='alert alert-danger'>{{ 'getstarted.step_two.treerequired'|trans }}</span>");
+			$("div#errorTreeModify").html("");$("div#errorFirtsname").html("");$("div#errorBirthZip").html("");$("div#errorMaidenName").html("");$("div#errorBirthCity").html("");$("div#errorPersonTitle").html("");$("div#errorBirthCountry").html("");
+		}
+		else if( $("#family_user_partner_person_birth_country").val() == "")
+		{
+			$("div#errorBirthCountry").html("<span class='alert alert-danger'>{{ 'getstarted.step_two.treerequired'|trans }}</span>");
+			$("div#errorTreeModify").html("");$("div#errorFirtsname").html("");$("div#errorBirthZip").html("");$("div#errorMaidenName").html("");$("div#errorBirthCity").html("");$("div#errorBirthDate").html("");$("div#errorPersonTitle").html("");
+		}
+		else if( $("#family_user_partner_person_birth_city").val() == "")
+		{
+			$("div#errorBirthCity").html("<span class='alert alert-danger'>{{ 'getstarted.step_two.treerequired'|trans }}</span>");
+			$("div#errorTreeModify").html("");$("div#errorFirtsname").html("");$("div#errorBirthZip").html("");$("div#errorMaidenName").html("");$("div#errorPersonTitle").html("");$("div#errorBirthDate").html("");$("div#errorBirthCountry").html("");
+			
+		}
+		else if( $("#family_user_partner_person_birth_zip").val() == "" && $("#family_user_partner_person_birth_country").val() == 1)
+		{
+			$("div#errorBirthZip").html("<span class='alert alert-danger'>{{ 'getstarted.step_two.treerequired'|trans }}</span>");
+			$("#family_user_partner_person_birth_zip").css("border", "3px");
+			
+			$("div#errorTreeModify").html("");$("div#errorPersonTitle").html("");$("div#errorFirtsname").html("");$("div#errorMaidenName").html("");$("div#errorBirthCity").html("");$("div#errorBirthDate").html("");$("div#errorBirthCountry").html("");
+		}
+		
+		else if($("#divTreeModify").val() == 0 && $("#family_user_partner_person_tree_modify").val() == "")
+		{ 
+			
+				$("div#errorTreeModify").html("<span class='alert alert-danger'>{{ 'getstarted.step_two.treerequired'|trans }}</span>");
+				$("div#errorBirthZip").html("");$("div#errorPersonTitle").html("");$("div#errorFirtsname").html("");$("div#errorMaidenName").html("");$("div#errorBirthCity").html("");$("div#errorBirthDate").html("");$("div#errorBirthCountry").html("");
+		} 
+		
+		//if($("div#errorFirtsname").empty() && $("#divTreeModify").val() == 0 && $("#family_user_partner_person_tree_modify").val() == "")
+		else
+			document.getElementById('formStepTwo').submit();
+			
+	
+	}
+	
+	function clear(a, b, c, d, e, f, g)
+	{
+		a.html(""); b.html(""); c.html(""); d.html(""); e.html(""); f.html(""); g.html("");
+	}
+	
+	</script>
+{% endblock body %}
